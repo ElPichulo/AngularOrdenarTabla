@@ -3,7 +3,9 @@ import * as _ from 'lodash';
 
 
 
-//instalar esta libreria npm install --save-dev lodash
+//instalar esta libreria npm install --save-dev lodash 
+//--> Si arroja error o no deja usar/importar la libreria hay que instalar lo siguiente
+//npm install @types/lodash --save-dev
 
 export interface Client {
   id: number,
@@ -19,6 +21,7 @@ export interface Client {
 export class SortComponent {
 
   private tipoOrden: string = "nombre";
+  private _order: boolean = true;
 
   client : Client[] = [
     { id: 1, nombre: 'Grégor', apellido: 'Gozález',edad: 15},
@@ -28,13 +31,24 @@ export class SortComponent {
   ]
 
   get _clientes(){
-
-    return _.sortBy(this.client, this.tipoOrden);
+    console.log("estado en _clientes: " + this._order);
+    if (this._order === true)
+        return _.orderBy(this.client, this.tipoOrden, ['desc']);
+    else
+        return _.orderBy(this.client, this.tipoOrden, ['asc']);
   }
 
-  orden(tipoOrden: string) {
+  orden(_tipoOrden: string) {
     //console.log(tipoOrden);
+    //
+    if (this.tipoOrden === _tipoOrden && this._order===true){
+        this._order = false;
+        this.tipoOrden = _tipoOrden;
+    }
+    else{
+      this.tipoOrden = _tipoOrden;
+      this._order = true;
+    }
     
-    this.tipoOrden = tipoOrden;
   }
 }
