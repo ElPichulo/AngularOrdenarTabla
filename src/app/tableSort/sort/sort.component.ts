@@ -31,7 +31,7 @@ export class SortComponent {
   ]
 
   get _clientes(){
-    console.log("estado en _clientes: " + this._order);
+    //console.log("estado en _clientes: " + this._order);
     if (this._order === true)
         return _.orderBy(this.client, this.tipoOrden, ['desc']);
     else
