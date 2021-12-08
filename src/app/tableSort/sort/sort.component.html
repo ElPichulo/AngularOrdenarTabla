@@ -1,0 +1,21 @@
+
+<table>
+    <tr>
+      <td>
+        <a href="#" (click)="orden('nombre')">Nombre</a>
+      </td>
+      <td>
+        <a href="#" (click)="orden('apellidos')">Apellidos</a>
+      </td>
+      <td>
+        <a href="#" (click)="orden('edad')">Edad</a>
+      </td>
+    </tr>
+  
+    <tr *ngFor="let persona of _clientes">
+      
+      <td>{{persona.nombre}}</td>
+      <td>{{persona.apellido}}</td>
+      <td>{{persona.edad}}</td>
+    </tr>
+  </table>
